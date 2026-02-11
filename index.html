@@ -61,42 +61,40 @@
 
 <script>
 function send() {
-  let text = document.getElementById("text").value;
-  if (text.trim() === "") return;
+  let input = document.getElementById("text");
+  let text = input.value.trim();
+
+  if (text === "") return;
 
   addMsg(text, "user");
 
-  let t = text.toLowerCase();
   let msg = text.toLowerCase();
-let reply = "";
+  let reply = "";
 
-if (msg.includes("hello") || msg.includes("hi")) {
-  reply = "Hello 👋 Kaise ho?";
-}
-else if (msg.includes("kaise ho")) {
-  reply = "Main bilkul theek hoon 😊 Tum batao?";
-}
-else if (msg.includes("name") || msg.includes("naam")) {
-  reply = "Mera naam Aapka AI hai 🤖";
-}
-else if (msg.includes("language") || msg.includes("bhasha")) {
-  reply = "Mujhe Hindi aur English dono aati hai 😄";
-}
-else if (msg.includes("help")) {
-  reply = "Main tumhari madad ke liye hoon 👍";
-}
-else {
-  reply = "Samajh nahi aaya 🤔 thoda simple likho";
-}
+  if (msg.includes("hi") || msg.includes("hello")) {
+    reply = "Hello 👋 Kaise ho?";
+  }
+  else if (msg.includes("kaise ho")) {
+    reply = "Main bilkul theek hoon 😊";
+  }
+  else if (msg.includes("name") || msg.includes("naam")) {
+    reply = "Mera naam Aapka AI hai 🤖";
+  }
+  else if (msg.includes("language") || msg.includes("bhasha")) {
+    reply = "Mujhe Hindi aur English dono aati hai 😄";
+  }
+  else if (msg.includes("help")) {
+    reply = "Main tumhari madad ke liye hoon 👍";
+  }
+  else {
+    reply = "Samajh nahi aaya 🤔 thoda simple likho";
+  }
 
-  else if (t.includes("language"))
-    reply = "Main Hindi, English aur Hinglish bol sakta hoon";
+  setTimeout(() => {
+    addMsg(reply, "bot");
+  }, 500);
 
-  else if (t.includes("a b c"))
-    reply = "A B C 😊";
-
-  setTimeout(() => addMsg(reply, "bot"), 400);
-  document.getElementById("text").value = "";
+  input.value = "";
 }
 
 function addMsg(msg, type) {
