@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ARISE AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  background:#0b0b0b;
+  color:white;
+  font-family:Arial;
+  margin:0;
+}
+header{
+  background:#ff0055;
+  padding:15px;
+  text-align:center;
+  font-size:22px;
+}
+#chat{
+  height:65vh;
+  overflow-y:auto;
+  padding:10px;
+}
+.msg{
+  margin:6px;
+  padding:8px;
+  border-radius:6px;
+  max-width:80%;
+}
+.user{background:#ff0055;margin-left:auto;}
+.bot{background:#222;}
+#controls{
+  display:flex;
+  padding:10px;
+}
+input{
+  flex:1;
+  padding:10px;
+  border-radius:6px;
+  border:none;
+}
+button{
+  margin-left:5px;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🌸 ARISE AI – Anime Creator 🌸</header>
+
+<div id="chat"></div>
+
+<div id="controls">
+  <input id="text" placeholder="Write anime story idea...">
+  <button onclick="send()">Send</button>
+</div>
+
+<script>
+function addMsg(text,type){
+  let d=document.createElement("div");
+  d.className="msg "+type;
+  d.innerText=text;
+  document.getElementById("chat").appendChild(d);
+}
+
+function send(){
+  let t=document.getElementById("text");
+  let msg=t.value.trim();
+  if(msg==="") return;
+
+  addMsg(msg,"user");
+
+  let reply="";
+
+  if(msg.includes("anime")){
+    reply="🎬 Anime Story:\nEk andheri duniya jahan ek akela hero apni taqat pehchanta hai...";
+  }
+  else if(msg.includes("character")){
+    reply="🧑 Character:\nNaam: Kuro\nPower: Shadow Flame\nNature: Silent & Dangerous";
+  }
+  else if(msg.includes("image")){
+    reply="🖼️ Anime Image Prompt:\nAnime style dark fantasy warrior, cinematic lighting";
+  }
+  else{
+    reply="🤖 Main anime stories, characters aur prompts bana sakta hoon.";
+  }
+
+  setTimeout(()=>addMsg(reply,"bot"),400);
+  t.value="";
+}
+</script>
+
+</body>
+</html>
