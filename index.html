@@ -78,31 +78,42 @@ function addMsg(msg, type) {
 }
 <script>
 function send() {
-  let msg = document.getElementById("msg").value.toLowerCase();
+  let msg = document.getElementById("msg").value.toLowerCase().trim();
   if(msg === "") return;
 
   let chat = document.getElementById("chat");
-  chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+  chat.innerHTML += `<p class="user">${msg}</p>`;
 
-  let reply = "Mujhe samajh nahi aaya 😅";
+  let reply = "Mujhe thoda clear likho 😊";
 
   if (msg.includes("hi") || msg.includes("hello")) {
-    reply = "Hello 👋 Main aapka AI hoon 🙂";
+    reply = "Hello 👋 Kaise ho?";
   }
-  else if (msg.includes("language")) {
-    reply = "Main Hindi, English aur thodi Hinglish samajh sakta hoon 😄";
+  else if (
+    msg.includes("kaise ho") ||
+    msg.includes("kese ho") ||
+    msg.includes("kashe ho")
+  ) {
+    reply = "Main bilkul theek hoon 😄";
   }
-  else if (msg.includes("name")) {
+  else if (
+    msg.includes("language") ||
+    msg.includes("bhasha") ||
+    msg.includes("konshi language")
+  ) {
+    reply = "Main Hindi, English aur Hinglish samajh sakta hoon 🙂";
+  }
+  else if (
+    msg.includes("name") ||
+    msg.includes("naam")
+  ) {
     reply = "Mera naam Arpan AI 🤖 hai";
-  }
-  else if (msg.includes("kaise ho")) {
-    reply = "Main badhiya hoon 😄 aap batao!";
   }
 
   setTimeout(() => {
-    chat.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
+    chat.innerHTML += `<p class="bot">${reply}</p>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 500);
+  }, 400);
 
   document.getElementById("msg").value = "";
 }
