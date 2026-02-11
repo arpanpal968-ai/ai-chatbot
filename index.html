@@ -67,13 +67,27 @@ function send() {
   addMsg(text, "user");
 
   let t = text.toLowerCase();
-  let reply = "Main aapka AI hoon 🙂";
+  let msg = text.toLowerCase();
+let reply = "";
 
-  if (t.includes("hello") || t.includes("hi"))
-    reply = "Hello! Kaise ho?";
-
-  else if (t.includes("name"))
-    reply = "Mera naam Aapka AI hai";
+if (msg.includes("hello") || msg.includes("hi")) {
+  reply = "Hello 👋 Kaise ho?";
+}
+else if (msg.includes("kaise ho")) {
+  reply = "Main bilkul theek hoon 😊 Tum batao?";
+}
+else if (msg.includes("name") || msg.includes("naam")) {
+  reply = "Mera naam Aapka AI hai 🤖";
+}
+else if (msg.includes("language") || msg.includes("bhasha")) {
+  reply = "Mujhe Hindi aur English dono aati hai 😄";
+}
+else if (msg.includes("help")) {
+  reply = "Main tumhari madad ke liye hoon 👍";
+}
+else {
+  reply = "Samajh nahi aaya 🤔 thoda simple likho";
+}
 
   else if (t.includes("language"))
     reply = "Main Hindi, English aur Hinglish bol sakta hoon";
