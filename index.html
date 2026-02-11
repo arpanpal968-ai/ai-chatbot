@@ -54,6 +54,11 @@
 
 <div id="chat"></div>
 
+<div style="padding:10px; background:#000;">
+  <button type="button" onclick="quick('hi')">Hi</button>
+  <button type="button" onclick="quick('help')">Help</button>
+  <button type="button" onclick="clearChat()">Clear</button>
+</div>
 <div id="inputArea">
   <input id="text" placeholder="Type message..."
   onkeydown="if(event.key==='Enter') send()">
