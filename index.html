@@ -65,6 +65,14 @@
   <button type="button" onclick="send()">Send</button>
 </div>
 
+function quick(text) {
+  document.getElementById("text").value = text;
+  send();
+}
+
+function clearChat() {
+  document.getElementById("chat").innerHTML = "";
+}
 <script>
 function send() {
   let input = document.getElementById("text");
