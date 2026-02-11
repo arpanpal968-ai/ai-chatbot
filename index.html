@@ -77,49 +77,39 @@ function clearChat() {
 function send() {
   let input = document.getElementById("text");
   let text = input.value.trim();
-
   if (text === "") return;
 
   addMsg(text, "user");
 
   let msg = text.toLowerCase();
-  let reply = "";
 
+  // Basic replies
   if (msg.includes("hi") || msg.includes("hello")) {
-    reply = "Hello 👋 Kaise ho?";
+    addMsg("Hello 👋 Kaise ho?", "bot");
   }
   else if (msg.includes("kaise ho")) {
-    reply = "Main bilkul theek hoon 😊";
+    addMsg("Main bilkul theek hoon 😊", "bot");
   }
   else if (msg.includes("name") || msg.includes("naam")) {
-    reply = "Mera naam Aapka AI hai 🤖";
+    addMsg("Mera naam Aapka AI hai 🤖", "bot");
   }
-  else if (msg.includes("language") || msg.includes("bhasha")) {
-    reply = "Mujhe Hindi aur English dono aati hai 😄";
-  }
-  else if (msg.includes("help")) {
-    reply = "Main tumhari madad ke liye hoon 👍";
-  }
-else {
-  reply = "Soch raha hoon 🤔...";
-  addMsg(reply, "bot");
+  else {
+    // REAL AI PART
+    addMsg("Soch raha hoon 🤔...", "bot");
 
-  fetch("https://api.affiliateplus.xyz/api/chatbot?message=" + encodeURIComponent(text) + "&botname=MyAI&ownername=You")
+    fetch(
+      "https://api.affiliateplus.xyz/api/chatbot?message=" +
+      encodeURIComponent(text) +
+      "&botname=MyAI&ownername=You"
+    )
     .then(res => res.json())
     .then(data => {
       addMsg(data.message, "bot");
     })
     .catch(() => {
-      addMsg("Internet issue 😕", "bot");
+      addMsg("Internet ya API problem 😕", "bot");
     });
-
-  input.value = "";
-  return;
-}
-
-  setTimeout(() => {
-    addMsg(reply, "bot");
-  }, 500);
+  }
 
   input.value = "";
 }
