@@ -144,6 +144,25 @@ function quick(text) {
 function clearChat() {
   document.getElementById("chat").innerHTML = "";
 }
+<script>
+let recognition;
+
+function startVoice() {
+  if (!('webkitSpeechRecognition' in window)) {
+    alert("Voice support nahi hai");
+    return;
+  }
+
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = "hi-IN";
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    document.getElementById("text").value =
+      event.results[0][0].transcript;
+    send();
+  };
+}
 </script>
 
 </body>
