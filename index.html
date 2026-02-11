@@ -94,6 +94,36 @@ function send(){
   setTimeout(()=>addMsg(reply,"bot"),400);
   t.value="";
 }
+function animeImagePrompt(story){
+  return "Anime style illustration, "+story+
+  ", ultra detailed, cinematic lighting, 4k, dark fantasy";
+}
+
+function send(){
+  let t=document.getElementById("text");
+  let msg=t.value.trim();
+  if(msg==="") return;
+
+  addMsg(msg,"user");
+
+  let reply="";
+
+  if(msg.includes("anime")){
+    reply="📖 Story:\nEk andheri duniya jahan ek ladka apni chhupi shakti jagata hai.";
+  }
+  else if(msg.includes("image")){
+    let prompt=animeImagePrompt("lone warrior standing in rain");
+    reply="🖼️ COPY THIS PROMPT:\n"+prompt+
+    "\n\n👉 Use Bing Image Creator";
+  }
+  else{
+    reply="🤖 Main anime story, character aur image prompt bana sakta hoon.";
+  }
+
+  setTimeout(()=>addMsg(reply,"bot"),400);
+  t.value="";
+}
+
 </script>
 
 </body>
