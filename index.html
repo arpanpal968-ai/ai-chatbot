@@ -3,26 +3,30 @@
 <head>
   <title>My AI Chatbot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a84ff">
+  <link rel="manifest" href="manifest.json">
+
   <style>
     body {
-      font-family: Arial;
+      margin: 0;
       background: #111;
       color: white;
-      margin: 0;
+      font-family: Arial;
     }
     #chat {
+      padding: 10px;
       height: 80vh;
       overflow-y: auto;
-      padding: 10px;
     }
     .msg {
       margin: 5px 0;
       padding: 8px;
-      border-radius: 8px;
+      border-radius: 5px;
+      max-width: 80%;
     }
     .user {
       background: #0a84ff;
-      text-align: right;
+      margin-left: auto;
     }
     .bot {
       background: #333;
@@ -52,21 +56,31 @@
 <div id="inputArea">
   <input id="text" placeholder="Type message...">
   <button onclick="send()">Send</button>
-  <input type="file" id="file" accept="image/*,video/*">
 </div>
 
 <script>
 function send() {
   let text = document.getElementById("text").value;
-  if(text === "") return;
+  if (text.trim() === "") return;
 
   addMsg(text, "user");
 
+  let t = text.toLowerCase();
   let reply = "Main aapka AI hoon 🙂";
-  if(text.toLowerCase().includes("hello")) reply = "Hello! Kaise ho?";
-  if(text.toLowerCase().includes("name")) reply = "Mera naam aapka AI hai";
 
-  setTimeout(() => addMsg(reply, "bot"), 500);
+  if (t.includes("hello") || t.includes("hi"))
+    reply = "Hello! Kaise ho?";
+
+  else if (t.includes("name"))
+    reply = "Mera naam Aapka AI hai";
+
+  else if (t.includes("language"))
+    reply = "Main Hindi, English aur Hinglish bol sakta hoon";
+
+  else if (t.includes("a b c"))
+    reply = "A B C 😊";
+
+  setTimeout(() => addMsg(reply, "bot"), 400);
   document.getElementById("text").value = "";
 }
 
@@ -76,45 +90,7 @@ function addMsg(msg, type) {
   div.innerText = msg;
   document.getElementById("chat").appendChild(div);
 }
-<script>
-function send() {
-  let msg = document.getElementById("msg").value.toLowerCase().trim();
-  if(msg === "") return;
-
-  let chat = document.getElementById("chat");
-  chat.innerHTML += `<p class="user">${msg}</p>`;
-
-  let reply = "Mujhe thoda clear likho 😊";
-
-  if (msg.includes("hi") || msg.includes("hello")) {
-    reply = "Hello 👋 Kaise ho?";
-  }
-  else if (
-    msg.includes("kaise ho") ||
-    msg.includes("kese ho") ||
-    msg.includes("kashe ho")
-  ) {
-    reply = "Main bilkul theek hoon 😄";
-  }
-  else if (
-    msg.includes("language") ||
-    msg.includes("bhasha") ||
-    msg.includes("konshi language")
-  ) {
-    reply = "Main Hindi, English aur Hinglish samajh sakta hoon 🙂";
-  }
-  else if (
-    msg.includes("name") ||
-    msg.includes("naam")
-  ) {
-    reply = "Mera naam Arpan AI 🤖 hai";
-  }
-
-  setTimeout(() => {
-    chat.innerHTML += `<p class="bot">${reply}</p>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 400);
-
-  document.getElementById("msg").value = "";
-}
 </script>
+
+</body>
+</html>
