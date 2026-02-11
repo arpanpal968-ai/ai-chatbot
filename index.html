@@ -100,9 +100,22 @@ function send() {
   else if (msg.includes("help")) {
     reply = "Main tumhari madad ke liye hoon 👍";
   }
-  else {
-    reply = "Samajh nahi aaya 🤔 thoda simple likho";
-  }
+else {
+  reply = "Soch raha hoon 🤔...";
+  addMsg(reply, "bot");
+
+  fetch("https://api.affiliateplus.xyz/api/chatbot?message=" + encodeURIComponent(text) + "&botname=MyAI&ownername=You")
+    .then(res => res.json())
+    .then(data => {
+      addMsg(data.message, "bot");
+    })
+    .catch(() => {
+      addMsg("Internet issue 😕", "bot");
+    });
+
+  input.value = "";
+  return;
+}
 
   setTimeout(() => {
     addMsg(reply, "bot");
