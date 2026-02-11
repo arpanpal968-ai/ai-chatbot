@@ -76,16 +76,34 @@ function addMsg(msg, type) {
   div.innerText = msg;
   document.getElementById("chat").appendChild(div);
 }
-</script>
+<script>
+function send() {
+  let msg = document.getElementById("msg").value.toLowerCase();
+  if(msg === "") return;
 
-</body>
-</html>
-icon.png
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a84ff">
-<head>
-  <title>My AI Chatbot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0a84ff">
-</head>
+  let chat = document.getElementById("chat");
+  chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+
+  let reply = "Mujhe samajh nahi aaya 😅";
+
+  if (msg.includes("hi") || msg.includes("hello")) {
+    reply = "Hello 👋 Main aapka AI hoon 🙂";
+  }
+  else if (msg.includes("language")) {
+    reply = "Main Hindi, English aur thodi Hinglish samajh sakta hoon 😄";
+  }
+  else if (msg.includes("name")) {
+    reply = "Mera naam Arpan AI 🤖 hai";
+  }
+  else if (msg.includes("kaise ho")) {
+    reply = "Main badhiya hoon 😄 aap batao!";
+  }
+
+  setTimeout(() => {
+    chat.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
+    chat.scrollTop = chat.scrollHeight;
+  }, 500);
+
+  document.getElementById("msg").value = "";
+}
+</script>
