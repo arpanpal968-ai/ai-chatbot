@@ -109,6 +109,14 @@ function addMsg(msg, type) {
   div.innerText = msg;
   document.getElementById("chat").appendChild(div);
 }
+function quick(text) {
+  document.getElementById("text").value = text;
+  send();
+}
+
+function clearChat() {
+  document.getElementById("chat").innerHTML = "";
+}
 </script>
 
 </body>
